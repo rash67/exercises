@@ -13,39 +13,65 @@
  */
 package com.samrash.math;
 
+/**
+ * "binary search" square root estimator. For explanatory purposes only
+ */
 public class SquareRootEstimator
 {
-	private static final double THRESHOLD = Double.MIN_VALUE * 10.0;
-	private static final long MAX_ITERATIONS = 1000000;
+    private SquareRootEstimator() {}
 
-	public static double sqrt(double x)
-	{
-		double left = 1.0;
-		double right = 0.5 * x;
-		double guess = 0.5 * (left + right);
-		double g2 = guess * guess;
-		long iterations = 0;
+    private static final double THRESHOLD = Double.MIN_VALUE * 1000.0;
+    private static final long MAX_ITERATIONS = 10000;
 
-		while (Math.abs(g2 - x) >= THRESHOLD && iterations++ < MAX_ITERATIONS) {
-			if (g2 > x) {
-				right = guess;
-			}
-			else {
-				left = guess;
-			}
+    public static double estimateSquareRoot(double x)
+    {
+        double x2 = x * x;
+        double factor = 0.5;
+        double left = 0.0;
+        double right;
 
-			guess = 0.5 * (left + right);
-			g2 = guess * guess;
-		}
+        if (x2 < x) {
+            right = 1.0;
+        }
+        else if (x2 > x) {
+            right = x;
+        }
+        else {
+            return x;
+        }
 
-		return guess;
-	}
+        double guess = factor * (left + right);
+        long iterations = 0;
 
-	public static void main(String[] args)
-	{
-		System.err.println(sqrt(25));
-		System.err.println(sqrt(16));
-		System.err.println(sqrt(100));
-		System.err.println(sqrt(105));
-	}
+        double g2 = guess * guess;
+        while (Math.abs(g2 - x) >= THRESHOLD && iterations++ < MAX_ITERATIONS) {
+            if (g2 > x) {
+                right = guess;
+            }
+            else {
+                left = guess;
+            }
+
+            guess = factor * (left + right);
+            g2 = guess * guess;
+        }
+
+        System.err.println("iter: " + iterations);
+        return guess;
+    }
+
+    public static void main(String[] args)
+    {
+        System.err.println(estimateSquareRoot(0));
+        System.err.println(estimateSquareRoot(1));
+        System.err.println(estimateSquareRoot(1.1));
+        System.err.println(estimateSquareRoot(2));
+        System.err.println(estimateSquareRoot(4));
+        System.err.println(estimateSquareRoot(25));
+        System.err.println(estimateSquareRoot(16));
+        System.err.println(estimateSquareRoot(100));
+        System.err.println(estimateSquareRoot(105));
+        System.err.println(estimateSquareRoot(0.5));
+        System.err.println(estimateSquareRoot(Integer.MAX_VALUE));
+    }
 }

@@ -11,8 +11,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.samrash.strings;
+
+import com.google.common.base.Preconditions;
 
 import java.nio.charset.StandardCharsets;
 
@@ -76,7 +77,7 @@ public class SubstringMatcherKMP
             }
         }
 
-        assert loopCount <= 2 * (patternChars.length + sChars.length);
+        Preconditions.checkState(loopCount <= 2 * (patternChars.length + sChars.length), "run time greater than 2(n+m)");
 
         if (j == patternChars.length) {
             return i - patternChars.length;

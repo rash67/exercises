@@ -32,13 +32,13 @@ public class SubStringMatcherDFA
         }
     }
 
-    private final Node startNode;
+    private final StateNode startNode;
     private final int patternLength;
 
     public SubStringMatcherDFA(String pattern)
     {
         int stateNum = 0;
-        Node lastNode = new Node(stateNum);
+        StateNode lastNode = new StateNode(stateNum);
 
         startNode = lastNode;
         patternLength = pattern.length();
@@ -49,8 +49,8 @@ public class SubStringMatcherDFA
         }
 
         for (char letter : pattern.toCharArray()) {
-            Node failNode = lastNode.transitions.get(letter);
-            Node nextNode = new Node(++stateNum);
+            StateNode failNode = lastNode.transitions.get(letter);
+            StateNode nextNode = new StateNode(++stateNum);
 
             lastNode.transitions.put(letter, nextNode);
 
@@ -64,7 +64,7 @@ public class SubStringMatcherDFA
 
     public String match(String input)
     {
-        Node currentNode = startNode;
+        StateNode currentNode = startNode;
         char[] inputAsChar = input.toCharArray();
 
         for (int i = 0; i < inputAsChar.length; i++) {
@@ -80,12 +80,12 @@ public class SubStringMatcherDFA
         return null;
     }
 
-    private static class Node
+    private static class StateNode
     {
-        private final Map<Character, Node> transitions = new HashMap<Character, Node>();
+        private final Map<Character, StateNode> transitions = new HashMap<>();
         private final int stateNum;
 
-        private Node(int stateNum)
+        private StateNode(int stateNum)
         {
             this.stateNum = stateNum;
         }

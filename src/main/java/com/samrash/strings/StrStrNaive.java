@@ -16,6 +16,11 @@ package com.samrash.strings;
 
 public class StrStrNaive
 {
+    private StrStrNaive()
+    {
+        throw new AssertionError("non-instantiable class");
+    }
+
     public static String strStr(String input, String pattern)
     {
         if (pattern.length() > input.length()) {

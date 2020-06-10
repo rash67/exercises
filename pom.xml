@@ -15,7 +15,17 @@
         <artifactId>airbase</artifactId>
         <version>101</version>
     </parent>
+
+    <properties>
+        <air.check.fail-checkstyle>false</air.check.fail-checkstyle>
+        <project.build.targetJdk>11</project.build.targetJdk>
+    </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>

@@ -22,6 +22,8 @@ import java.util.List;
 
 public class IterativeMergeSort
 {
+    private IterativeMergeSort() {}
+
     public static <T extends Comparable<? super T>> List<T> sort(List<T> input)
     {
         return sort(input, Comparator.naturalOrder());
