@@ -1,18 +1,21 @@
 package com.samrash.tree;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Stack;
 
 public class IterativePostOrder
 {
 	public interface NodeFunction
 	{
-		public void visit(Node n);
+		void visit(Node n);
 	}
 
 	public static void postOrderTraversal(Node root, NodeFunction function)
 	{
-		Stack<Node> toVisit = new Stack<Node>();
-		Stack<Node> entered = new Stack<Node>();
+		Stack<Node> toVisit = new Stack<>();
+		Stack<Node> entered = new Stack<>();
 
 		toVisit.push(root);
 
@@ -40,7 +43,7 @@ public class IterativePostOrder
 
 	private static class Node
 	{
-		private final List<Node> children = new ArrayList<Node>();
+		private final List<Node> children = new ArrayList<>();
 		private final String id;
 
 		private Node(String id)
@@ -101,13 +104,6 @@ public class IterativePostOrder
 			c
 		);
 
-		postOrderTraversal(root, new NodeFunction()
-		{
-			@Override
-			public void visit(Node n)
-			{
-				System.err.println(n);
-			}
-		});
+		postOrderTraversal(root, System.err::println);
 	}
 }
