@@ -1,4 +1,4 @@
-package samrash.sort;
+package com.samrash.sort;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package samrash.math;
+package com.samrash.math;
 
 public class SquareRootEstimator
 {

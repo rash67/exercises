@@ -1,6 +1,4 @@
-package samrash.nfa;
-
-import samrash.nfa.NFA;
+package com.samrash.nfa;
 
 import java.util.*;
 

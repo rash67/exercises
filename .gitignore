@@ -2,4 +2,5 @@
 *.iws
 *.iml
 classes
-
+.idea/
+target/

@@ -1,4 +1,4 @@
-package samrash.nfa;
+package com.samrash.nfa;
 
 import java.util.*;
 import java.util.concurrent.*;

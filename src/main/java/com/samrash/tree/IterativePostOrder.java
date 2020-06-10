@@ -1,4 +1,4 @@
-package samrash.tree;
+package com.samrash.tree;
 
 import java.util.*;
 
@@ -21,12 +21,12 @@ public class IterativePostOrder
 
 			if (currentNode.isLeaf()) {
 				function.visit(currentNode);
-				toVisit.pop();				
+				toVisit.pop();
 			}
 			else if (!entered.isEmpty() && entered.peek().id.equals(currentNode.id)) {
 				function.visit(currentNode);
 				toVisit.pop();
-				entered.pop();				
+				entered.pop();
 			}
 			else {
 				entered.push(currentNode);
